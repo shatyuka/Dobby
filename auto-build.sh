@@ -21,8 +21,8 @@ output_dir_name=auto-build-workspace/darwin-x86_64-build
 echo "prepare build ${output_dir_name}"
 
 mkdir -p ${CURRENT_DIR}/${output_dir_name}
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
-  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=OFF
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
+  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mkdir -p ${summary_output_dir_name}/darwin/x86_64
@@ -34,11 +34,11 @@ compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
 mkdir -p ${CURRENT_DIR}/${output_dir_name}
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_TOOLCHAIN_FILE=cmake/ios.toolchain.cmake \
   -DPLATFORM=OS64 -DARCHS="arm64" -DCMAKE_SYSTEM_PROCESSOR=arm64 \
   -DENABLE_BITCODE=0 -DENABLE_ARC=0 -DENABLE_VISIBILITY=1 -DDEPLOYMENT_TARGET=9.3 \
-  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=OFF
+  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mkdir -p ${summary_output_dir_name}/darwin/arm64
@@ -50,11 +50,11 @@ compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
 mkdir -p ${CURRENT_DIR}/${output_dir_name}
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_TOOLCHAIN_FILE=cmake/ios.toolchain.cmake \
   -DPLATFORM=OS64 -DARCHS="arm64e" -DCMAKE_SYSTEM_PROCESSOR=arm64e \
   -DENABLE_BITCODE=0 -DENABLE_ARC=0 -DENABLE_VISIBILITY=1 -DDEPLOYMENT_TARGET=9.3 \
-  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=OFF
+  -DDOBBY_GENERATE_SHARED=OFF -DGenerateDarwinFramework=OFF -DDOBBY_DEBUG=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mkdir -p ${summary_output_dir_name}/darwin/arm64e
@@ -86,9 +86,9 @@ output_dir_name=auto-build-workspace/android-arm64-build
 compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_SYSTEM_NAME=Android -DCMAKE_ANDROID_ARCH_ABI="arm64-v8a" -DCMAKE_ANDROID_NDK=$ANDROID_NDK_DIR -DCMAKE_SYSTEM_VERSION=21 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
-  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=OFF -DPlugin.Android.BionicLinkerRestriction=ON
+  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=ON -DPlugin.Android.BionicLinkerRestriction=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mv ${output_dir_name}/${android_library_name} "prefab/modules/dobby/libs/android.arm64-v8a/${android_library_name}"
@@ -98,9 +98,9 @@ output_dir_name=auto-build-workspace/android-armv7-build
 compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_SYSTEM_NAME=Android -DCMAKE_ANDROID_ARCH_ABI="armeabi-v7a" -DCMAKE_ANDROID_NDK=$ANDROID_NDK_DIR -DCMAKE_SYSTEM_VERSION=16 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
-  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=OFF -DPlugin.Android.BionicLinkerRestriction=ON
+  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=ON -DPlugin.Android.BionicLinkerRestriction=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mv ${output_dir_name}/${android_library_name} "prefab/modules/dobby/libs/android.armeabi-v7a/${android_library_name}"
@@ -110,9 +110,9 @@ output_dir_name=auto-build-workspace/android-x86-build
 compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_SYSTEM_NAME=Android -DCMAKE_ANDROID_ARCH_ABI="x86" -DCMAKE_ANDROID_NDK=$ANDROID_NDK_DIR -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
-  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=OFF -DPlugin.Android.BionicLinkerRestriction=ON
+  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=ON -DPlugin.Android.BionicLinkerRestriction=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mv ${output_dir_name}/${android_library_name} "prefab/modules/dobby/libs/android.x86/${android_library_name}"
@@ -122,9 +122,9 @@ output_dir_name=auto-build-workspace/android-x86_64-build
 compress_dir_array="$compress_dir_array $output_dir_name"
 echo "prepare build ${output_dir_name}"
 
-cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Release \
+cmake -S . -B ${output_dir_name} -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_SYSTEM_NAME=Android -DCMAKE_ANDROID_ARCH_ABI="x86_64" -DCMAKE_ANDROID_NDK=$ANDROID_NDK_DIR -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
-  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=OFF -DPlugin.Android.BionicLinkerRestriction=ON
+  -DDOBBY_GENERATE_SHARED=OFF -DDOBBY_DEBUG=ON -DPlugin.Android.BionicLinkerRestriction=ON
 cmake --build ${output_dir_name} --parallel 4 --target dobby
 
 mv ${output_dir_name}/${android_library_name} "prefab/modules/dobby/libs/android.x86_64/${android_library_name}"

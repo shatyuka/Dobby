@@ -3,7 +3,7 @@ name: Darwin Auto Build
 on:
   push:
     branches:
-      - master
+      - debug
 
 jobs:
   default:
@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: checkout master
       uses: actions/checkout@master
+      with:         ref: debug
 
     - name: auto build
       run: |
